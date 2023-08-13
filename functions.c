@@ -1,51 +1,28 @@
 #include "monty.h"
+
 /**
- * _strcmp - compares strings
- *
- * Return: 0
- *
+ * get_op_func - function to select correct operation function
+ * @token1: 1st bytecode input 
+ * Return: pointer to correct operation function
  */
-int _strcmp(char *opcode, char *list)
+void (*get_op_func(char *token1))(stack_t **stack, unsigned int line_number)
 {
+	instruction_t instruction_s[] = {
+		{"pop", pop},
+		{"pall", pall},
+		{"pint", pint},
+		{"swap", swap},
+		{"add", _add},
+		{"nop", nop},
+		{NULL, NULL}
+	};
+	int i = 0;
 
-	
-	while (*list != '\0')
+	while (instruction_s[i].f != NULL)
 	{
-		if (*string == *list)
-		{
-			string++;
-			list++;
-			if (*string == '\0')
-				return (1);
-		}
-		else
-			list++;
+		if (strcmp(token1, instruction_s[i].opcode) == 0)
+			return (instruction_s[i].f);
+		i++;
 	}
-	return (0);
-}
-
-int pushint(char *list)
-{
-	char *string = "push";
-
-	while (*list != '\0')
-	{
-		if (*string == *list)
-		{
-			string++;
-			list++;
-			if (*string == '\0')
-				while (*list)
-				{
-					if (*list > '0' && *list < '9')
-					{
-						return (atoi(list));
-					}
-					list++;
-				}
-		}
-		else
-			list++;
-	}
-	return (0);
+	return (NULL);
 }
