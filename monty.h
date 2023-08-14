@@ -52,4 +52,7 @@ int add_end_node(stack_t **h, int n);
 void delete_end_node(stack_t **h);
 void free_dlist(stack_t **h);
 int is_number(const char *n);
+int is_num(const char *n);
+void _add(stack_t **h, unsigned int line_num);
+void _sub(stack_t **h, unsigned int line_number);
 #endif

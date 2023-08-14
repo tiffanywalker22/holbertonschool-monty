@@ -45,3 +45,22 @@ void pall(stack_t **h, unsigned int line_number)
 		tmp = tmp->next;
 	}
 }
+
+/**
+ * is_num - iterates each char of string to check if isdigit
+ * @n: int
+ * Return: 0 if is num, -1 if not
+ */
+int is_num(const char *n)
+{
+	int i = 0;
+
+	if (*n == '-')
+		i = 1;
+	for (; *(n + i) != '\0'; i++)
+	{
+		if (isdigit(*(n + i)) == 0)
+			return (-1);
+	}
+	return (0);
+}
